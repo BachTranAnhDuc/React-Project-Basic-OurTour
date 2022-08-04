@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import Tour from './Tour';
 
 const Tours = () => {
   const [getTours, setTours] = useState([]);
 
   const fetchData = async () => {
     try {
-      const res = await fetch('https://course-api.com/react-tours-project');
+      const res = await fetch(
+        'https://raw.githubusercontent.com/BachTranAnhDuc/React-Project-Basic-OurTour/main/src/data.json'
+      );
 
       if (res.status >= 200 && res.status <= 299) {
         const data = await res.json();
@@ -27,16 +30,7 @@ const Tours = () => {
   return (
     <>
       {getTours.map((tour) => {
-        const { id, image, info, name, price } = tour;
-        return (
-          <div key={id} className="tour">
-            <img src={image} alt="image" className="tour__img" />
-            <h5 className="tour__name">{name}</h5>
-            <p className="tour__price">{price}</p>
-            <p className="tour__description">{info}</p>
-            <button className="btn">Not Interested</button>
-          </div>
-        );
+        return <Tour {...tour}></Tour>;
       })}
     </>
   );

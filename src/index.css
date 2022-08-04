@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* dark shades of primary color*/
@@ -54,7 +54,41 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
   line-height: 1;
+}
+
+.heading__secondary {
+}
+
+.container {
+  max-width: 60rem;
+  background-color: var(--clr-grey-1);
+
+  margin: 6rem auto;
+
+  display: grid;
+
+  gap: 4.8rem;
+}
+
+.tour {
+  background-color: #1aa179;
+}
+
+.tour__img {
+  max-width: 60rem;
+}
+
+.tour__name {
+}
+
+.tour__price {
+}
+
+.tour__description {
+}
+
+.btn {
 }

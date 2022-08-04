@@ -1,28 +1,43 @@
-import React, { useEffect, useState } from "react";
-import data from "./data.json";
+import React, { useEffect, useState } from 'react';
 
 const Tours = () => {
- const [getTours, setTours] = useState([]);
+  const [getTours, setTours] = useState([]);
 
- const fetchData = () => {
-  try {
-   const res = await fetch('./data.json');
-   const data = await res.json();
-   
-  } catch (err) {
-   console.error(err);
-  }
- }
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://course-api.com/react-tours-project');
 
- useEffect(() => {
-  fetchData();
- })
+      if (res.status >= 200 && res.status <= 299) {
+        const data = await res.json();
+
+        console.log(data);
+        setTours(data);
+      } else {
+        throw new Error(res.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  });
+
   return (
     <>
-      <h2 className="heading__secondary">Our Tours</h2>
-      <div className="tour">
-       <img src="" alt="" className="tour__img" />
-      </div>
+      {getTours.map((tour) => {
+        const { id, image, info, name, price } = tour;
+        return (
+          <div key={id} className="tour">
+            <img src={image} alt="image" className="tour__img" />
+            <h5 className="tour__name">{name}</h5>
+            <p className="tour__price">{price}</p>
+            <p className="tour__description">{info}</p>
+            <button className="btn">Not Interested</button>
+          </div>
+        );
+      })}
     </>
   );
 };
